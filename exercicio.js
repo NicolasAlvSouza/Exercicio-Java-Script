@@ -2,7 +2,7 @@ const tarefas = []
 
 function criarTarefa(titulo, prioridade) {
 
-    if (titulo.trim() === '') {
+    if (!titulo || titulo.trim() === '') {
         console.log("Erro: Título obrigatório")
         return null
     }
@@ -18,23 +18,23 @@ function adicionarTarefa(lista, titulo, prioridade) {
     const tarefa = criarTarefa (titulo, prioridade)
     
     if(tarefa === null) {
-        return null
+        return
     }
     lista.push(tarefa)
     console.log(`Tarefa criada: ${tarefa.titulo}`)
 }
 
 function listarTarefas(lista) {
-    if (lista.length = 0) {
+    if (lista.length === 0) {
         console.log('Nenhuma tarefa cadastrada')
         return
     }
     console.log('==== Lista de Tarefas ====')
 
-    lista.forEach((tarefa, indice) => {
-        const status = tarefa.concluida ? "✅" : "⏳"
-        const prioridade = tarefa.prioridade.toUpperCase()
-        console.log(`${indice + 1}. ${status} ${prioridade} — ${tarefa.titulo}`)
+    lista.forEach((t, indice) => {
+        const status = t.concluida ? "✅" : "⏳"
+        const prioridade = t.prioridade.toUpperCase()
+        console.log(`${indice + 1}. ${status} ${prioridade} — ${t.titulo}`)
     })
 }
 
